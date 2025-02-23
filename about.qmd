@@ -1,0 +1,7 @@
+---
+title: "About"
+---
+
+## About this site
+
+- This site is a collection of all assignments and projects completed for the Knowledge Mining course. 

@@ -1,0 +1,74 @@
+---
+title: "Assignment 2"
+format: html
+---
+
+## Libraries
+
+```{r}
+library(haven)
+library(descr)
+library(tidyverse)
+library(dplyr)
+library(ggcorrplot)
+library(ggplot2)
+```
+
+## Load Data
+
+```{r}
+TEDS_2016 <- read_dta("https://github.com/datageneration/home/blob/master/DataProgramming/data/TEDS_2016.dta?raw=true")
+TEDS_2016$PartyID <- factor(TEDS_2016$PartyID, labels = c("KMT", "DPP", "NP", "PFP", "TSU", "NPP", "NA"))
+```
+
+
+
+```{r party_id_analysis}
+head(TEDS_2016$PartyID)
+tail(TEDS_2016$PartyID)
+freq(TEDS_2016$PartyID)
+```
+
+```{r party_support_plot}
+T2 <- TEDS_2016 %>%
+  count(PartyID) %>%
+  mutate(perc = n / sum(n))
+
+ggplot(T2, aes(x = reorder(PartyID, -perc), y = perc, fill = PartyID)) +
+  geom_bar(stat = "identity") +
+  ylab("Party Support (%)") +
+  xlab("Taiwan Political Parties") +
+  theme_bw() +
+  scale_fill_manual(values = c("steelblue", "forestgreen", "khaki1", "orange", "goldenrod", "yellow", "grey"))
+```
+
+```{r create_female_variable}
+TEDS_2016 <- TEDS_2016 %>%
+  mutate(female = ifelse(Sex == 2, 1, 0))
+table(TEDS_2016$female)
+```
+
+```{r correlation_analysis}
+cor_vars <- TEDS_2016 %>% select(Tondu, female, age, DPP, income, edu, Taiwanese, Econ_worse)
+cor_matrix <- cor(cor_vars, use = "pairwise.complete.obs")
+
+ggcorrplot(cor_matrix, 
+           method = "circle", 
+           type = "lower",
+           lab = TRUE,
+           colors = c("red", "white", "blue"),
+           title = "Correlation Matrix")
+```
+
+## Linear Regression
+
+```{r linear_regression}
+model <- lm(votetsai ~ female + age + DPP + income + edu + Taiwanese + Econ_worse, data = TEDS_2016)
+summary(model)
+```
+
+```{r tondu_frequency}
+TEDS_2016$Tondu <- factor(TEDS_2016$Tondu, levels = unique(TEDS_2016$Tondu), labels = c("Unification now", "Status quo, unif. in future", "Status quo, decide later", "Status quo forever", "Status quo, indep. in future", "Independence now", "No response"))
+frequency_table <- table(TEDS_2016$Tondu)
+print(frequency_table)
+```
