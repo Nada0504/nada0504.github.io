@@ -1,5 +1,5 @@
 /* css styles */
-/* General styling for a clean, modern look */
+
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f8f9fa;
@@ -52,12 +52,11 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Lists */
+
 ul {
     list-style-type: square;
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 768px) {
     .container {
         width: 95%;

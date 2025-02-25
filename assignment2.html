@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>About – Nada Iqbal</title>
+<title>Assignment 2 – Nada Iqbal</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -68,6 +68,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -94,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
@@ -122,14 +151,6 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="./assignment2.0.html">
  <span class="dropdown-text">Assignment 2</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="./Lab01.html">
- <span class="dropdown-text">Lab 1</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./Lab02.html">
- <span class="dropdown-text">Lab 2</span></a>
-  </li>  
     </ul>
   </li>
 </ul>
@@ -147,7 +168,23 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#about-this-site" id="toc-about-this-site" class="nav-link active" data-scroll-target="#about-this-site">About this site</a></li>
+  <li><a href="#problems-encountered" id="toc-problems-encountered" class="nav-link active" data-scroll-target="#problems-encountered">Problems Encountered</a></li>
+  <li><a href="#dealing-with-missing-values" id="toc-dealing-with-missing-values" class="nav-link" data-scroll-target="#dealing-with-missing-values">Dealing With Missing Values</a></li>
+  <li><a href="#exploring-the-relationship-with-tondu" id="toc-exploring-the-relationship-with-tondu" class="nav-link" data-scroll-target="#exploring-the-relationship-with-tondu">Exploring the relationship with Tondu</a></li>
+  <li><a href="#select-the-relevant-columns-for-correlation" id="toc-select-the-relevant-columns-for-correlation" class="nav-link" data-scroll-target="#select-the-relevant-columns-for-correlation">Select the relevant columns for correlation</a></li>
+  <li><a href="#create-the-female-variable-1-if-sex-2-otherwise-0" id="toc-create-the-female-variable-1-if-sex-2-otherwise-0" class="nav-link" data-scroll-target="#create-the-female-variable-1-if-sex-2-otherwise-0">Create the ‘female’ variable (1 if sex == 2, otherwise 0)</a></li>
+  <li><a href="#check-if-the-variable-is-created-correctly" id="toc-check-if-the-variable-is-created-correctly" class="nav-link" data-scroll-target="#check-if-the-variable-is-created-correctly">Check if the variable is created correctly</a></li>
+  <li><a href="#compute-correlation-matrix" id="toc-compute-correlation-matrix" class="nav-link" data-scroll-target="#compute-correlation-matrix">Compute correlation matrix</a></li>
+  <li><a href="#visualize-correlation-matrix-with-ggcorrplot" id="toc-visualize-correlation-matrix-with-ggcorrplot" class="nav-link" data-scroll-target="#visualize-correlation-matrix-with-ggcorrplot">Visualize correlation matrix with ggcorrplot</a></li>
+  <li><a href="#create-a-dataframe-of-predictions" id="toc-create-a-dataframe-of-predictions" class="nav-link" data-scroll-target="#create-a-dataframe-of-predictions">Create a dataframe of predictions</a></li>
+  <li><a href="#teds_2016predicted_votetsai---predictmodel" id="toc-teds_2016predicted_votetsai---predictmodel" class="nav-link" data-scroll-target="#teds_2016predicted_votetsai---predictmodel">TEDS_2016$predicted_votetsai &lt;- predict(model)</a></li>
+  <li><a href="#ggplotteds_2016-aesx-predicted_votetsai-y-votetsai" id="toc-ggplotteds_2016-aesx-predicted_votetsai-y-votetsai" class="nav-link" data-scroll-target="#ggplotteds_2016-aesx-predicted_votetsai-y-votetsai">ggplot(TEDS_2016, aes(x = predicted_votetsai, y = votetsai)) +</a></li>
+  <li><a href="#geom_pointalpha-0.5-scatter-plot" id="toc-geom_pointalpha-0.5-scatter-plot" class="nav-link" data-scroll-target="#geom_pointalpha-0.5-scatter-plot">geom_point(alpha = 0.5) + # Scatter plot</a></li>
+  <li><a href="#geom_smoothmethod-lm-color-blue-regression-line" id="toc-geom_smoothmethod-lm-color-blue-regression-line" class="nav-link" data-scroll-target="#geom_smoothmethod-lm-color-blue-regression-line">geom_smooth(method = “lm”, color = “blue”) + # Regression line</a></li>
+  <li><a href="#xlabpredicted-votetsai" id="toc-xlabpredicted-votetsai" class="nav-link" data-scroll-target="#xlabpredicted-votetsai">xlab(“Predicted Votetsai”) +</a></li>
+  <li><a href="#ylabactual-votetsai" id="toc-ylabactual-votetsai" class="nav-link" data-scroll-target="#ylabactual-votetsai">ylab(“Actual Votetsai”) +</a></li>
+  <li><a href="#ggtitlelinear-regression-predictions-votetsai" id="toc-ggtitlelinear-regression-predictions-votetsai" class="nav-link" data-scroll-target="#ggtitlelinear-regression-predictions-votetsai">ggtitle(“Linear Regression Predictions: Votetsai”)</a></li>
+  <li><a href="#tondu-frequency-table" id="toc-tondu-frequency-table" class="nav-link" data-scroll-target="#tondu-frequency-table">Tondu frequency table</a></li>
   </ul>
 </nav>
 </nav>
@@ -160,7 +197,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">Assignment 2</h1>
 </div>
 
 
@@ -177,11 +214,76 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="about-this-site" class="level2">
-<h2 class="anchored" data-anchor-id="about-this-site">About this site</h2>
-<ul>
-<li>This site is a collection of all assignments and projects completed for the Knowledge Mining course.</li>
-</ul>
+<p>library(haven) TEDS_2016&lt;- read_stata(“https://github.com/datageneration/home/blob/master/DataProgramming/data/TEDS_2016.dta?raw=true”)</p>
+<p>TEDS_2016<span class="math inline">\(PartyID &lt;- factor(TEDS_2016\)</span>PartyID, labels=c(“KMT”,“DPP”,“NP”,“PFP”, “TSU”, “NPP”,“NA”))</p>
+<p>attach(TEDS_2016) head(PartyID) tail(PartyID)</p>
+<p>library(descr) freq(TEDS_2016$PartyID)</p>
+<p>library(tidyverse) library(dplyr)</p>
+<p>T2 &lt;- TEDS_2016 %&gt;% count(PartyID) %&gt;% # Count occurrences of each PartyID mutate(perc = n / nrow(TEDS_2016)) # Calculate percentage</p>
+<p>ggplot(T2, aes(x = reorder(PartyID, -perc), y = perc, fill = PartyID)) + geom_bar(stat = “identity”) + ylab(“Party Support (%)”) + xlab(“Taiwan Political Parties”) + theme_bw() + scale_fill_manual(values = c(“steelblue”, “forestgreen”, “khaki1”, “orange”, “goldenrod”, “yellow”, “grey”))</p>
+<section id="problems-encountered" class="level1">
+<h1>Problems Encountered</h1>
+</section>
+<section id="dealing-with-missing-values" class="level1">
+<h1>Dealing With Missing Values</h1>
+</section>
+<section id="exploring-the-relationship-with-tondu" class="level1">
+<h1>Exploring the relationship with Tondu</h1>
+<p>library(ggcorrplot)</p>
+</section>
+<section id="select-the-relevant-columns-for-correlation" class="level1">
+<h1>Select the relevant columns for correlation</h1>
+<p>library(dplyr)</p>
+</section>
+<section id="create-the-female-variable-1-if-sex-2-otherwise-0" class="level1">
+<h1>Create the ‘female’ variable (1 if sex == 2, otherwise 0)</h1>
+<p>TEDS_2016 &lt;- TEDS_2016 %&gt;% mutate(female = ifelse(Sex == 2, 1, 0))</p>
+<p>table(TEDS_2016$female) # Check the output</p>
+</section>
+<section id="check-if-the-variable-is-created-correctly" class="level1">
+<h1>Check if the variable is created correctly</h1>
+<p>cor_vars&lt;- TEDS_2016 %&gt;% select(Tondu, female, age, DPP, income, edu, Taiwanese, Econ_worse)</p>
+</section>
+<section id="compute-correlation-matrix" class="level1">
+<h1>Compute correlation matrix</h1>
+<p>Nitxnfub0@$ # Print correlation matrix print(cor_matrix)</p>
+</section>
+<section id="visualize-correlation-matrix-with-ggcorrplot" class="level1">
+<h1>Visualize correlation matrix with ggcorrplot</h1>
+<p>cor_matrix &lt;- cor(cor_vars, use = “pairwise.complete.obs”)</p>
+<p>library(ggcorrplot)</p>
+<p>ggcorrplot(cor_matrix, method = “circle”, type = “lower”, lab = TRUE, colors = c(“red”, “white”, “blue”), title = “Correlation Matrix”</p>
+<p>##Votetsai linearmdl&lt;- lm(votetsai ~ female + age + DPP + income + edu + Taiwanese + Econ_worse, data = TEDS_2016) print(linearmdl) library(ggplot2)</p>
+<p>model &lt;- lm(votetsai ~ female + age + DPP + income + edu + Taiwanese + Econ_worse, data = TEDS_2016) summary(model)</p>
+</section>
+<section id="create-a-dataframe-of-predictions" class="level1">
+<h1>Create a dataframe of predictions</h1>
+</section>
+<section id="teds_2016predicted_votetsai---predictmodel" class="level1">
+<h1>TEDS_2016$predicted_votetsai &lt;- predict(model)</h1>
+</section>
+<section id="ggplotteds_2016-aesx-predicted_votetsai-y-votetsai" class="level1">
+<h1>ggplot(TEDS_2016, aes(x = predicted_votetsai, y = votetsai)) +</h1>
+</section>
+<section id="geom_pointalpha-0.5-scatter-plot" class="level1">
+<h1>geom_point(alpha = 0.5) + # Scatter plot</h1>
+</section>
+<section id="geom_smoothmethod-lm-color-blue-regression-line" class="level1">
+<h1>geom_smooth(method = “lm”, color = “blue”) + # Regression line</h1>
+</section>
+<section id="xlabpredicted-votetsai" class="level1">
+<h1>xlab(“Predicted Votetsai”) +</h1>
+</section>
+<section id="ylabactual-votetsai" class="level1">
+<h1>ylab(“Actual Votetsai”) +</h1>
+</section>
+<section id="ggtitlelinear-regression-predictions-votetsai" class="level1">
+<h1>ggtitle(“Linear Regression Predictions: Votetsai”)</h1>
+</section>
+<section id="tondu-frequency-table" class="level1">
+<h1>Tondu frequency table</h1>
+<p>TEDS_2016<span class="math inline">\(Tondu&lt;-as.numeric(TEDS_2016\)</span>Tondu,labels=c(“Unification now”, “Status quo, unif. in future”, “Status quo, decide later”, “Status quo forever”, “Status quo, indep. in future”, “Independence now”, “No response”))</p>
+<p>frequency_table&lt;- table(TEDS_2016$Tondu) print(frequency_table)</p>
 
 
 </section>
