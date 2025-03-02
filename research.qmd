@@ -1,0 +1,9 @@
+---
+title: "Research"
+format: html
+editor: visual
+---
+
+[Proposal Link](Nada_Iqbal_Proposal.pdf){target="_blank"}
+
+[Reading Slides](Nada_Iqbal_Reading.pdf){target="_blank"}
