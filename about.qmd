@@ -1,7 +1,14 @@
 ---
 title: "About"
+format:
+  html:
+    theme: 
+      - cosmo
 ---
 
 ## About this site
 
 - This site is a collection of all assignments and projects completed for the Knowledge Mining course. 
+
+
+[Resume Link](Nada_Iqbal_Resume.pdf){target="_blank"}
