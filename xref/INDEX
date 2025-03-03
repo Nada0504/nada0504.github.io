@@ -1,0 +1,29 @@
+{
+  "index.qmd": {
+    "index.html": "a23de8b5"
+  },
+  "about.qmd": {
+    "about.html": "899804f8"
+  },
+  "assignment1.qmd": {
+    "assignment1.html": "93c6c988"
+  },
+  "assignment2.qmd": {
+    "assignment2.html": "624fceb7"
+  },
+  "assignment2.0.qmd": {
+    "assignment2.0.html": "7f0fa2c9"
+  },
+  "Lab01.qmd": {
+    "Lab01.html": "9d139538"
+  },
+  "Lab02.qmd": {
+    "Lab02.html": "14a2733d"
+  },
+  "assignment3.qmd": {
+    "assignment3.html": "e755c265"
+  },
+  "research.qmd": {
+    "research.html": "6144611f"
+  }
+}
