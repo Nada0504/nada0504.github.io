@@ -15,20 +15,18 @@ website:
         text: Research
       - href: project.qmd
         text: Projects
-      - href: cv.pdf
-        text: CV
       - text: Assignments
         menu:
           - href: assignment1.qmd
             text: Assignment 1
           - href: assignment2.0.qmd
             text: Assignment 2
+          - href: assignment3.qmd
+            text: Assignment 3
           - href: Lab01.qmd
             text: Lab 1
           - href: Lab02.qmd
             text: Lab 2
-  page-footer: 
-    left: "© 2024 Nada Iqbal"
 
 format:
   html:
